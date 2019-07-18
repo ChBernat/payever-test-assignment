@@ -15,9 +15,6 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        ApiService,
-        PaginationApiService,
-        RequestCacheService,
     { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
       ]
     };

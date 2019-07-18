@@ -17,7 +17,8 @@ interface ISingleUserResponse {
 }
 
 
-@Injectable()
+@Injectable({
+ providedIn: 'root',})
 export class ApiService {
 
   constructor(private http: HttpClient, private paginationApiService: PaginationApiService) {

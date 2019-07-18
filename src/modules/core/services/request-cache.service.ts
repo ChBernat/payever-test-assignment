@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse } from '@angular/common/http';
 
 const maxAge = 30000;
-@Injectable()
+@Injectable({
+ providedIn: 'root',
+})
 export class RequestCacheService  {
 
   cache = new Map();

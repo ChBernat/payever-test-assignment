@@ -10,7 +10,8 @@ export const routes: Routes = [
 },
 {
   path: 'users',
-  loadChildren: '../modules/users-list/users-list.module#UsersListModule'
+  // loadChildren: () => import('../modules/users-list/users-list.module').then(mod => mod.UsersListModule)
+  loadChildren: '../modules/users-list/users-list.module#UserListModule'
 },
 {
   path: 'user',
