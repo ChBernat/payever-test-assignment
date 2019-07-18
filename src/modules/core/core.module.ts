@@ -1,6 +1,8 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ApiService, PaginationApiService } from './services';
+import {CachingInterceptor} from './interceptors/request-cache.interceptor';
+import {RequestCacheService} from './services/request-cache.service';
 
 @NgModule({
   imports: [
@@ -14,7 +16,9 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         ApiService,
-        PaginationApiService
+        PaginationApiService,
+        RequestCacheService,
+    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
       ]
     };
   }

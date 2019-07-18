@@ -15,7 +15,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    CoreModule.forRoot(),
+    // CoreModule.forRoot(),
+    CoreModule,
     RouterModule,
     AppRoutingModule,
     UsersListModule,

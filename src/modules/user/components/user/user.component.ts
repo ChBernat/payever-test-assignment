@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserInterface } from '../../../../interfaces';
 import { ApiService } from '../../../core/services';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -10,7 +11,7 @@ import { ApiService } from '../../../core/services';
 })
 export class UserComponent implements OnInit {
 
-  user: UserInterface;
+  user$: Observable<UserInterface>;
 
   constructor(private apiService: ApiService,
               private activatedRoute: ActivatedRoute,
@@ -18,9 +19,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     const userId: number = this.activatedRoute.snapshot.params['id'];
-    this.apiService.fetchUserById(userId).subscribe((user: UserInterface) => {
-      this.user = user;
-    });
+    this.user$ = this.apiService.fetchUserById(userId);
   }
 
   back(): void {

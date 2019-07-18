@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {PaginationInterface} from '../../../interfaces/pagination.interfaces';
 
 @Injectable()
 export class PaginationApiService {
@@ -10,12 +11,12 @@ export class PaginationApiService {
   }
 
   fetchPaginationInfo(): Observable<any> {
-    return this.http.get('https://reqres.in/api/users?page=1').pipe(map(response => {
+    return this.http.get<PaginationInterface>('https://reqres.in/api/users?page=1').pipe(map(response => {
       return {
-        total_pages: response.json().total_pages,
-        per_page: response.json().per_page,
-        total: response.json().total,
-        page: response.json().page
+        total_pages: response.total_pages,
+        per_page: response.per_page,
+        total: response.total,
+        page: response.page
       };
     }));
   }

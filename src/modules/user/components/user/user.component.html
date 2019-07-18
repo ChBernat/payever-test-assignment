@@ -1,3 +1,10 @@
-<button (click)="back()">Back</button>
 
-<app-user-data [user]="user"></app-user-data>
+<mat-toolbar><button mat-raised-button (click)="back()">Back</button></mat-toolbar>
+
+<mat-card *ngIf="user$ | async as userData">
+  <mat-card-title>
+    <img mat-card-avatar src="{{userData.avatar}}">
+    {{userData.first_name}} {{userData.last_name}}
+  </mat-card-title>
+  <mat-card-subtitle>{{userData.email}}</mat-card-subtitle>
+</mat-card>
